@@ -3,6 +3,8 @@
 rails server - запуск проекта
 db root - 123
 
+rails db:migrate
+rails db:seed
 
 
 
