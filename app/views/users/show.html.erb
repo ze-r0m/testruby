@@ -1,10 +1,26 @@
+<% content_for :title, "Show user" %>
+
+<h1>Профиль пользователя</h1>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<!-- Отображаем информацию о пользователе -->
+<div class="card p-4 shadow">
+  <h3><%= @user.name %></h3>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+</div>
+
+<br>
+
+<!--<div>-->
+<!--  <%#= link_to "Редактировать этого пользователя", edit_user_path(@user), class: "btn btn-warning btn-sm" %> |-->
+<!--  <%#= link_to "Назад к пользователям", users_path, class: "btn btn-secondary btn-sm" %> |-->
+  <%#= button_to "Удалить этого пользователя", @user, method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger btn-sm" %>
+<!--</div>-->
+<!--<br>-->
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= link_to "Edit this user", edit_user_path(@user), class: "btn btn-warning btn-sm"%> |
+  <%= link_to "Delete this user", @user, method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger btn-sm"%> |
+  <%= link_to "Back to users", users_path, class: "btn btn-secondary btn-sm" %>
 </div>
