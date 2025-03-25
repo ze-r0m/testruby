@@ -5,30 +5,57 @@
 # `$XDG_CONFIG_HOME/git/ignore` or `~/.config/git/ignore`
 
 # Ignore bundler config.
-/.bundle
+.bundle
 
 # Ignore all environment files.
-/.env*
+.env*
+.env.*.local
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
+tmp/pids/*
+!tmp/pids/
+!tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
-/storage/*
-!/storage/.keep
-/tmp/storage/*
-!/tmp/storage/
-!/tmp/storage/.keep
+storage/*
+!storage/.keep
+tmp/storage/*
+!tmp/storage/
+!tmp/storage/.keep
 
-/public/assets
+# Ignore compiled assets
+public/assets/
+public/packs/
+public/uploads/
+
+# Ignore dependencies
+node_modules/
+vendor/bundle/
+
+# Ignore IDE and editor settings
+.idea/
+*.iml
+
+# Ignore RuboCop cache
+.rubocop-*
+
+# Ignore Docker override file (if using Docker)
+docker-compose.override.yml
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+config/master.key
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
