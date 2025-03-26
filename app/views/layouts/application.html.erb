@@ -40,11 +40,47 @@
           <li class="nav-item"><%= link_to "Товары", products_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Заказы", orders_path, class: "nav-link" %></li>
         </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+            <span class="navbar-text">
+              Добро пожаловать, <%= current_user.name %>!
+            </span>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Войти', new_user_session_path, class: 'btn btn-outline-primary' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-outline-success' %>
+            </li>
+          <% end %>
+        </ul>
+
       </div>
+
+
+      <%# if user_signed_in? %>
+<!--        <p>Добро пожаловать, <%#= current_user.name %>!</p>-->
+        <%#= link_to "Выйти", destroy_user_session_path, method: :delete %>
+      <%# else %>
+        <%#= link_to "Войти", new_user_session_path %>
+        <%#= link_to "Зарегистрироваться", new_user_registration_path %>
+      <%# end %>
+
+      <%#= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+
+
     </div>
   </nav>
 
   <div class="container mt-4">
+
+
     <%= yield %>
   </div>
 
