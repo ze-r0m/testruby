@@ -1,10 +1,17 @@
+<% content_for :title, "Show category" %>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @category %>
+<%#= render @category %>
+
+<div class="card p-4 shadow">
+<!--  <h3><%#= @user.name %></h3>-->
+  <p><strong>Название категории:</strong> <%= @category.name %></p>
+</div>
 
 <div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
+  <%= link_to "Edit this category", edit_category_path(category) %> |
   <%= link_to "Back to categories", categories_path %>
 
-  <%= button_to "Destroy this category", @category, method: :delete %>
+  <%= button_to "Destroy this category", category, method: :delete %>
 </div>

@@ -1,16 +1,24 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="mb-4">Категории</h1>
 
-<% content_for :title, "Categories" %>
-
-<h1>Categories</h1>
-
-<div id="categories">
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+  <tr>
+    <th>Название</th>
+    <th>Действия</th>
+  </tr>
+  </thead>
+  <tbody>
   <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
+    <tr>
+      <td><%= category.name %></td>
+      <td>
+        <%= link_to "Показать", category_path(category), class: "btn btn-info btn-sm" %>
+        <%= link_to "Редактировать", edit_category_path(category), class: "btn btn-warning btn-sm" %>
+        <%= link_to "Удалить", category_path(category), method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger btn-sm" %>
+      </td>
+    </tr>
   <% end %>
-</div>
+  </tbody>
+</table>
 
-<%= link_to "New category", new_category_path %>
+<%= link_to "Добавить категорию", new_category_path, class: "btn btn-success" %>
