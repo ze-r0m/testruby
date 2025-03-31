@@ -1,10 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @product %>
+<%#= render @product %>
+<h1>Страница товара</h1>
+<br>
+
+<div class="card p-4 shadow">
+  <h3><%= @product.name %></h3>
+  <br>
+  <p><strong>Стоимость:</strong> <%= @product.price %></p>
+  <p><strong>Категория товара - </strong> <%= @product.category&.name || "Нет категории" %></p>
+</div>
+
+<br>
 
 <div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
+  <%= link_to "Edit this product", edit_product_path(@product), class: "btn btn-warning btn-sm"%> |
+  <%= link_to "Delete this product", @product, method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger btn-sm"%> |
+  <%= link_to "Back to products", products_path, class: "btn btn-secondary btn-sm" %>
 </div>
