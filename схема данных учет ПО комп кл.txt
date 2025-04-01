@@ -1,0 +1,181 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table follows {
+  following_user_id integer
+  followed_user_id integer
+  created_at timestamp 
+}
+
+Table users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table posts {
+  id integer [primary key]
+  title varchar
+  body text [note: 'Content of the post']
+  user_id integer [not null]
+  status varchar
+  created_at timestamp
+}
+
+/*********/
+
+Table Comp_class{
+  id_aud integer [primary key]
+  aud_number varchar
+  id_kaf integer [not null]
+  count_seat int
+  count_comp_seat int
+  count_comp int
+  spec_purpose text
+  projector bool
+  panel bool
+  ch_board bool
+  add_note text
+
+}
+
+Table Faculty{
+  id_faculty integer [primary key]
+  name varchar
+  add_note text
+}
+
+Table Cafedra{
+  id_caf integer [primary key]
+  name varchar
+  id_faculty integer [not null]
+}
+
+Table Installed_Software{
+  id_software integer [primary key]
+  name varchar
+  version varchar
+  start_date date
+  finish_date date
+
+}
+
+Table class_software{
+  id integer [primary key]
+  id_aud integer [not null]
+  id_software integer [not null]
+}
+
+Table RequestSoft{
+  id_req integer [primary key]
+  id_caf integer [not null]
+  id_aud integer [not null] /*множественный выбор*/
+  soft_name varchar
+  version varchar
+  count integer
+  price integer
+  contact text
+}
+
+
+
+
+Ref faculty_cafedra: Cafedra.id_faculty > Faculty.id_faculty
+
+Ref class_cafedra: Comp_class.id_kaf > Cafedra.id_caf
+
+
+Ref: Comp_class.id_aud < class_software.id_aud
+Ref: Installed_Software.id_software < class_software.id_software
+
+Ref: RequestSoft.id_caf > Cafedra.id_caf
+Ref: RequestSoft.id_aud > Comp_class.id_aud
+
+/*******************/
+
+
+
+
+
+
+Table Comp_class {
+  id_aud integer [primary key]
+  aud_number varchar(50) [not null]
+  id_kaf integer [not null]
+  count_seat smallint
+  count_comp_seat smallint
+  count_comp smallint
+  spec_purpose text
+  projector tinyint(1)
+  panel tinyint(1)
+  ch_board tinyint(1)
+  add_note text
+}
+
+Table Faculty {
+  id_faculty integer [primary key]
+  name varchar(255) [not null]
+  add_note text
+}
+
+Table Cafedra {
+  id_caf integer [primary key]
+  name varchar(255) [not null]
+  id_faculty integer [not null]
+}
+
+Table Installed_Software {
+  id_software integer [primary key]
+  name varchar(255) [not null]
+  version varchar(50) [not null]
+  start_date date
+  finish_date date
+}
+
+Table class_software {
+  id integer [primary key]
+  id_aud integer [not null]
+  id_software integer [not null]
+}
+
+Table RequestSoft {
+  id_req integer [primary key]
+  id_caf integer [not null]
+  soft_name varchar(255) [not null]
+  version varchar(50) [not null]
+  count smallint [not null]
+  price decimal(10,2)
+  contact text
+}
+
+Table RequestSoft_Aud {
+  id integer [primary key]
+  id_req integer [not null]
+  id_aud integer [not null]
+}
+
+Table Users {
+  id_user integer [primary key]
+  username varchar(100) [not null, unique]
+  email varchar(255) [not null, unique]
+  password_hash varchar(255) [not null]
+  id_role integer [not null]
+}
+
+Table Roles {
+  id_role integer [primary key]
+  role_name varchar(50) [not null, unique]
+}
+
+Ref faculty_cafedra: Cafedra.id_faculty > Faculty.id_faculty
+Ref class_cafedra: Comp_class.id_kaf > Cafedra.id_caf
+
+Ref: Comp_class.id_aud < class_software.id_aud
+Ref: Installed_Software.id_software < class_software.id_software
+
+Ref: RequestSoft.id_caf > Cafedra.id_caf
+Ref: RequestSoft_Aud.id_req > RequestSoft.id_req
+Ref: RequestSoft_Aud.id_aud > Comp_class.id_aud
+
+Ref: Users.id_role > Roles.id_role
